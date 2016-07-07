@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>firebirdAdapter</name><driver>org.firebirdsql.jdbc.FBDriver</driver><username>sysdba</username><password>masterkey</password><savePassword>true</savePassword><url>jdbc:firebirdsql:localhost/3050:C:\\Users\\Ricardo\\workspace\\jasperReport\\BANCOTESTE.FDB</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>
