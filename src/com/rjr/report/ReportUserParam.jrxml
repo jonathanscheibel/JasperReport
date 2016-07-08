@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-07-08T13:46:51 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportUserParam" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b0fbba79-a133-4a93-b2d3-c8c20cab7db5">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="src\com\rjr\jasperAdapter\FirebirdAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="grupo" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select 
+  u.int_user,
+  u.nm_user,
+  g.nm_grupo
+from 
+  usuario u 
+  inner join grupo g on (u.int_grupo = g.int_grupo)
+ where
+  g.int_grupo = $P{grupo}]]>
+	</queryString>
+	<field name="INT_USER" class="java.lang.Integer"/>
+	<field name="NM_USER" class="java.lang.String"/>
+	<field name="NM_GRUPO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="462" height="20" uuid="f901e5bb-23d5-4cb1-8d74-f707f796bcc2"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[SH3 Informatica]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="30" uuid="4a094de2-6736-4729-9c24-9a71f8e02f57"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Usuarios por grupo]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="82bdf6fc-74a3-49e2-aa5b-a132c28db904"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="230" height="20" uuid="db1852d3-66fa-477e-85e4-b40f937cc34e"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="230" height="20" uuid="1e41fab4-bdbe-4a16-a6b0-d2e0719ffba7"/>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="01b4d5be-5a36-4039-aacd-4319905b318a"/>
+				<textFieldExpression><![CDATA[$F{INT_USER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="230" height="20" uuid="d74f33e6-1b57-4294-96e7-42a215bc8051"/>
+				<textFieldExpression><![CDATA[$F{NM_USER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="230" height="20" uuid="56d3d5a0-e504-49c4-8933-bcfa1ba49dd7"/>
+				<textFieldExpression><![CDATA[$F{NM_GRUPO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="375" y="2" width="100" height="18" uuid="a94b212a-3803-4947-ba87-12dad34bf7a2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="475" y="2" width="100" height="18" uuid="d8131bb3-c3e4-4d75-bc79-ac765c21cfcd"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="21" splitType="Stretch"/>
+	</summary>
+</jasperReport>
