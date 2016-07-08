@@ -17,41 +17,14 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class main {
-
-	public static void printReport(Connection conn){
-		try {	
-//			HashMap param = new HashMap();
-//			JasperPrint jp = JasperFillManager.fillReport("src/com/rjr/report/ReportUser.jasper", param, con);
-//			JasperViewer jw = new JasperViewer(jp);
-//			jw.setVisible(true);			          			
-			
-			FileInputStream fis = new FileInputStream("C:\\Users\\Ricardo\\workspace\\jasperReport\\src\\com\\rjr\\report\\ReportUser.jasper");
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fis);
-            
-            //compile report
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(bufferedInputStream);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conn);
- 
-            // view report to UI
-            JasperViewer.viewReport(jasperPrint, false);
-
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 	
-	public static void printReportParam(Connection conn, @SuppressWarnings("rawtypes") HashMap param){
+	@SuppressWarnings({"rawtypes", "unchecked"}) 
+	public static void printReportParam2(String fileName, Connection conn, HashMap param){
 		try {				          						
-			FileInputStream fis = new FileInputStream("C:\\Users\\Ricardo\\workspace\\jasperReport\\src\\com\\rjr\\report\\ReportUserParam.jasper");
+			FileInputStream fis = new FileInputStream(fileName);
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fis);
             
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(bufferedInputStream);
-            @SuppressWarnings("unchecked")
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, conn);
             JasperViewer.viewReport(jasperPrint, false);
 
@@ -64,22 +37,28 @@ public class main {
 		}
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static HashMap<String, Class> readReportParameters(String fileName){
+		HashMap<String, Class> mapa = new HashMap<>();
+		
+		//logica
+		
+		return mapa;
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ConnectionFactory fabrica = new ConnectionFactory();
 		Connection con = fabrica.getInstance();
 		
 		//Report sem parametros
-//		printReport(con);
+		printReportParam2("src/com/rjr/report/ReportUser.jasper", con, null);
 		
 		//Criando parametros
-		HashMap param = new HashMap();
-        param.put("grupo", 1);
+		HashMap<String, Object> param = new HashMap<>();
+        param.put("grupo", 2);
 		
         //Report com paramentros
-        printReportParam(con, param);
-        
+		printReportParam2("src/com/rjr/report/ReportUserParam.jasper", con, param);
 		
 		System.out.println("Fechando conexao");		
 		try {
